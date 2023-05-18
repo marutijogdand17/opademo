@@ -5,7 +5,11 @@ resource "google_storage_bucket" "auto-expire" {
   storage_class = "STANDARD"
 
   versioning {
-    enabled = false
+    enabled = true
+  }
+
+  retention_policy {
+    is_locked = true
   }
 
   public_access_prevention = "enforced"
