@@ -9,6 +9,7 @@ resource "google_storage_bucket" "auto-expire" {
   }
 
   retention_policy {
+    retention_period = "123442111"
     is_locked = true
   }
 
