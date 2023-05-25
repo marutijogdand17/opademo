@@ -1,0 +1,22 @@
+steps:
+  - id: "Generate Terraform Plan"
+    name: "us-central1-docker.pkg.dev/wiz-environment-692908/wiz-demo/wizcli:v2"
+    dir: Storage
+    script: >
+      #!/usr/bin/env bash
+      terraform init 
+      terraform validate
+      terraform plan --out tfplan.binary
+      terraform show -json tfplan.binary > /workspace/tfplan.json
+
+  - id: "Validate Terraform plan using Wiz CLI"
+    name: "us-central1-docker.pkg.dev/wiz-environment-692908/wiz-demo/wizcli:v2"
+    script: >
+      #!/usr/bin/env bash
+      wizcli auth --id ${_WIZ_ID} --secret ${_WIZ_SECRET}
+      wizcli iac scan --path /workspace/tfplan.json --policy "test-iac-demo-policy"
+
+
+
+
+
