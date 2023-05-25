@@ -17,14 +17,14 @@ resource "google_compute_instance" "demo" {
   }
 
   attached_disk {
-    source = "pd-disk-self-link"
+    source            = "pd-disk-self-link"
     kms_key_self_link = "kms-key-self-link"
   }
 
   shielded_instance_config {
-    enable_integrity_monitoring = false
-    enable_secure_boot = false
-    enable_vtpm = true
+    enable_integrity_monitoring = true
+    enable_secure_boot          = true
+    enable_vtpm                 = true
   }
 
   scratch_disk {
@@ -40,9 +40,9 @@ resource "google_compute_instance" "demo" {
   }
 
   metadata = {
-    block-project-ssh-keys = "true"
-    enable-guest-attributes = "TRUE"
-    serial-port-enable = "false"
+    block-project-ssh-keys  = "true"
+    enable-guest-attributes = "true"
+    serial-port-enable      = "false"
   }
 
   advanced_machine_features {
