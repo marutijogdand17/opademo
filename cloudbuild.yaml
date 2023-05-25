@@ -16,6 +16,8 @@ steps:
       wizcli auth --id ${_WIZ_ID} --secret ${_WIZ_SECRET}
       wizcli iac scan --path /workspace/tfplan.json --policy "test-iac-demo-policy"
 
+options:
+  dynamic_substitutions: true
 
 
 
