@@ -9,6 +9,6 @@ resource "google_storage_bucket" "demo" {
 
   retention_policy {
     retention_period = "315360000"
-    is_locked = false
+    is_locked = true
   }
 }
