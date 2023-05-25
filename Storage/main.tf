@@ -5,10 +5,10 @@ resource "google_storage_bucket" "demo" {
 
   public_access_prevention = "enforced"
 
-  uniform_bucket_level_access = false
+  uniform_bucket_level_access = true
 
   retention_policy {
     retention_period = "315360000"
-    is_locked = false
+    is_locked = true
   }
 }
