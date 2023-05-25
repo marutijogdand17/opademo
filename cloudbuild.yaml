@@ -11,10 +11,10 @@ steps:
 
   - id: "Validate Terraform plan using Wiz CLI"
     name: "us-central1-docker.pkg.dev/wiz-environment-692908/wiz-demo/wizcli:v2"
-    entrypoint: "wizcli"
-    args:
-      - "auth --id ${_WIZ_ID} --secret ${_WIZ_SECRET}"
-      - "iac scan --path /workspace/tfplan.json --policy \"test-iac-demo-policy\""
+    script: |
+      #!/bin/bash
+      wizcli auth --id "${_WIZ_ID}" --secret "${_WIZ_SECRET}"
+      wizcli iac scan --path /workspace/tfplan.json --policy "test-iac-demo-policy"
 
 options:
   dynamic_substitutions: true
