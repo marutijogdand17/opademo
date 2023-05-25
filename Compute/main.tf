@@ -41,7 +41,7 @@ resource "google_compute_instance" "demo" {
 
   metadata = {
     block-project-ssh-keys  = "true"
-    enable-guest-attributes = "true"
+    enable-guest-attributes = "false"
     serial-port-enable      = "false"
   }
 
