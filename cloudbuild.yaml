@@ -17,7 +17,6 @@ steps:
   - id: 'terraform apply'
     name: 'us-central1-docker.pkg.dev/wiz-environment-692908/wiz-demo/wizcli:v2'
     entrypoint: 'bash'
-    dir: Storage
     args: ['-c', 'terraform apply --auto-approve']
 
 
