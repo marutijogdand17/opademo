@@ -8,3 +8,11 @@ module "gcs_bucket" {
   retention_period            = var.retention_period
   retention_policy_is_locked  = var.retention_policy_is_locked
 }
+
+
+module "pub_sub" {
+  source          = "./pubsub"
+  topic_name      = var.topic_name
+  subscriber_name = var.subscriber_name
+  project         = var.project
+}
