@@ -1,5 +1,6 @@
 resource "google_pubsub_topic" "demo" {
   name = var.topic_name
+  project = var.project
 }
 
 resource "google_pubsub_subscription" "demo" {
