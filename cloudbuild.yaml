@@ -7,9 +7,8 @@ steps:
 
   - id: 'wizcli scan'
     name: 'us-central1-docker.pkg.dev/wiz-environment-692908/wiz-demo/wizcli:v2'
-    dir: workspace
     entrypoint: 'bash'
-    args: ['-c', 'wizcli auth --id $$WIZID --secret $$WIZSECRET && wizcli iac scan --path tfplan.json --policy "test-iac-demo-policy"']
+    args: ['-c', 'wizcli auth --id $$WIZID --secret $$WIZSECRET && wizcli iac scan --path /workspace/tfplan.json --policy "test-iac-demo-policy"']
     secretEnv:
       - "WIZID"
       - "WIZSECRET"
