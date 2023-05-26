@@ -1,0 +1,32 @@
+steps:
+  - id: 'generate terraform plan'
+    name: 'us-central1-docker.pkg.dev/wiz-environment-692908/wiz-demo/wizcli:v2'
+    dir: Storage
+    entrypoint: 'bash'
+    args: 
+    - '-c'
+    - |
+    - 'terraform init'
+    - 'terraform validate'
+    - 'terraform plan --out tfplan.binary'
+    - 'terraform show -json tfplan.binary > /workspace/tfplan.json'
+
+  - id: 'wizcli scan'
+    name: 'us-central1-docker.pkg.dev/wiz-environment-692908/wiz-demo/wizcli:v2'
+    dir: workspace
+    entrypoint: 'bash'
+    args: 
+    - '-c'
+    - |
+    - 'wizcli auth --id $$WIZID --secret $$WIZSECRET'
+    - 'wizcli iac scan --path tfplan.json --policy "test-iac-demo-policy"'
+    secretEnv:
+      - "WIZID"
+      - "WIZSECRET"
+
+availableSecrets:
+  secretManager:
+  - versionName: projects/$PROJECT_ID/secrets/WIZID/versions/latest
+    env: 'WIZID'
+  - versionName: projects/$PROJECT_ID/secrets/WIZSECRET/versions/latest
+    env: 'WIZSECRET'
