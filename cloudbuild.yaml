@@ -5,9 +5,9 @@ steps:
     entrypoint: 'bash'
     args: 
     - '-c'
-    - 'terraform init && \' 
-    - 'terraform validate && \'
-    - 'terraform plan --out tfplan.binary && \'
+    - 'terraform init &&' 
+    - 'terraform validate &&'
+    - 'terraform plan --out tfplan.binary &&'
     - 'terraform show -json tfplan.binary > /workspace/tfplan.json'
 
   - id: 'wizcli scan'
@@ -16,7 +16,7 @@ steps:
     entrypoint: 'bash'
     args: 
     - '-c'
-    - 'wizcli auth --id $$WIZID --secret $$WIZSECRET && \'
+    - 'wizcli auth --id $$WIZID --secret $$WIZSECRET &&'
     - 'wizcli iac scan --path tfplan.json --policy "test-iac-demo-policy"'
     secretEnv:
       - "WIZID"
